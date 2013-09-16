@@ -1,0 +1,15 @@
+{
+    "name": "hyborian/config",
+    "description": "A simple config file system, works with slim php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matt Wiseman",
+            "email": "trollboy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+
+    }
+}
