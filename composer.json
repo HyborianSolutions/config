@@ -11,5 +11,19 @@
     "minimum-stability": "dev",
     "require": {
 
+    },
+    "autoload": {
+        "psr-0" : {
+            "config\\config" : "src"
+        }
+    },
+    "scripts": {
+        "post-update-cmd": "config\\initialize::postUpdate",
+        "post-package-install": [
+            "config\\initialize::postPackageInstall"
+        ],
+        "post-install-cmd": [
+            "config\\initialize::warmCache"
+        ]
     }
 }

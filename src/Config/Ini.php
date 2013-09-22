@@ -48,13 +48,43 @@ if(!defined('CONFIG_DIR'))
  * @author  Matt Wiseman
  * @since   1.0.0
  */
-class ini
+class ini implements config\adaptor
 {
-	private static $config = NULL; 
+	private static $_conf = NULL;
 
-	public static function translate ($key, $section = "main")
+	public static function init($data)
 	{
-		echo 'Hello World';
+		self::$_conf = $data;
+	} 
+
+	public static function get ($key, $section = "main")
+	{
+		if(!is_array(self::$config))
+		{
+			self::$config = parse_ini_file(self::$_conf['location'] . DIRECTORY_SEPARATOR . self::$_conf['configfilename'], true);
+		}
+		if(!isset(self::$config[$section][$key]))
+		{
+			retun array();
+		}
+		else
+		{
+			return self::$config[$section][$key]);
+		}
+	}
+
+	public static function set($key, $value, $section = "main")
+	{
+		self::$config[$section][$key] = $value;
 	}
  
+ 	public static function save()
+ 	{
+
+ 	}
+
+ 	public static function merge($path)
+ 	{
+
+ 	}
 }
