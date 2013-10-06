@@ -2,11 +2,12 @@
 
 namespace config;
 
-interface config\adaptor
+Interface adaptor
 {
-	public static function get($key, $section = "main");
-	public static function set($key, $value, $section = "main");
- 	public static function save();
- 	public static function merge($path);
+    public static function init($data);
+    public static function get($data);
+    public static function set($data);
+    public static function save($data);
+    public static function merge($data);
 
-} 
+}

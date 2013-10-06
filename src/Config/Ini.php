@@ -4,7 +4,7 @@
  *
  * @author      Matt Wiseman <trollboy@gmail.com>
  * @copyright   2013 Matt Wiseman
- * @link        http://www.mattwiseman.net/config 
+ * @link        http://www.mattwiseman.net/config
  * @version     1.0
  * @package     Config
  *
@@ -29,62 +29,74 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-namespace config; 
- 
-if(!defined('APP_DIR'))
-{
-	$path = explode('vendor', __FILE__);
-	define('APP_DIR', $path[0] . '/');
+namespace Config;
+
+if (!defined('APP_DIR')) {
+    $path = explode('vendor', __FILE__);
+    define('APP_DIR', $path[0] . '/');
 }
-if(!defined('CONFIG_DIR'))
-{
-	$path = explode('vendor', __FILE__);
-	define('CONFIG_DIR', $path[0] . '/data/config');
+if (!defined('CONFIG_DIR')) {
+    $path = explode('vendor', __FILE__);
+    define('CONFIG_DIR', $path[0] . '/data/config');
 }
 
 /**
- * Json
+ * Ini Adapter
  * @package Config
  * @author  Matt Wiseman
  * @since   1.0.0
  */
-class ini implements config\adaptor
+class Ini implements config\adaptor
 {
-	private static $_conf = NULL;
+    private static $_data = \NULL;
 
-	public static function init($data)
-	{
-		self::$_conf = $data;
-	} 
+    private static $_conf = \NULL;
 
-	public static function get ($key, $section = "main")
-	{
-		if(!is_array(self::$config))
-		{
-			self::$config = parse_ini_file(self::$_conf['location'] . DIRECTORY_SEPARATOR . self::$_conf['configfilename'], true);
-		}
-		if(!isset(self::$config[$section][$key]))
-		{
-			retun array();
-		}
-		else
-		{
-			return self::$config[$section][$key]);
-		}
-	}
+    public static function init($data)
+    {
+        self::$_conf = $data;
+    }
 
-	public static function set($key, $value, $section = "main")
-	{
-		self::$config[$section][$key] = $value;
-	}
- 
- 	public static function save()
- 	{
+    public static function get ($key, $section = "main")
+    {
+        if (!is_array(self::$_data)) {
+            self::$_data = parse_ini_file(self::$_conf['location'] . DIRECTORY_SEPARATOR . self::$_conf['configfilename'], true);
+        }
+        if (!isset(self::$_data[$section][$key])) {
+            return array();
+        } else {
+            return self::$_data[$section][$key];
+        }
+    }
 
- 	}
+    public static function set($key, $value, $section = "main")
+    {
+        self::$config[$section][$key] = $value;
+    }
 
- 	public static function merge($path)
- 	{
+    public static function save()
+    {
+        $res = array();
+        foreach($array as $key => $val)
+        {
+            if(is_array($val))
+            {
+                $res[] = "[$key]";
+                foreach($val as $skey => $sval) 
+                {
+                    $res[] = "$skey = ".(is_numeric($sval) ? $sval : '"'.$sval.'"');
+                }
+            }
+            else{ 
+                $res[] = "$key = ".(is_numeric($val) ? $val : '"'.$val.'"');
+            }
+        }
+        safefilerewrite(self::$_conf['location'] . DIRECTORY_SEPARATOR . self::$_conf['configfilename'], implode("\r\n", $res));
+        
+    }
 
- 	}
+     public static function merge($path)
+     {
+
+     }
 }
