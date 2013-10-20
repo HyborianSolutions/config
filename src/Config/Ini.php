@@ -31,22 +31,13 @@
  */
 namespace Config;
 
-if (!defined('APP_DIR')) {
-    $path = explode('vendor', __FILE__);
-    define('APP_DIR', $path[0] . '/');
-}
-if (!defined('CONFIG_DIR')) {
-    $path = explode('vendor', __FILE__);
-    define('CONFIG_DIR', $path[0] . '/data/config');
-}
-
 /**
  * Ini Adapter
  * @package Config
  * @author  Matt Wiseman
  * @since   1.0.0
  */
-class Ini implements config\adaptor
+class Ini implements Config\adaptor
 {
     private static $_data = \NULL;
 

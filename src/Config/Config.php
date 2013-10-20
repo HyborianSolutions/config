@@ -74,7 +74,8 @@ class Config
             }
             
             self::$_conf = $data;
-            $obj = DIRECTORY_SEPARATOR . __NAMESPACE__ . DIRECTORY_SEPARATOR . $data['type'];
+            $obj =  '\\' . __NAMESPACE__ . '\\' . $data['type'];
+            var_dump($obj);
             self::$_adaptor =  $obj;
             $obj::init($data);
         }
