@@ -10,9 +10,9 @@
     ],
     "minimum-stability": "dev",
     "require": {
-
+ 
     },
     "autoload": { 
-        "psr-0": { "Config\\Config" : "src" }
+        "psr-0": { "Config\\" : "src" }
     }
 }
