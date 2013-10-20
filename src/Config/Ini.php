@@ -38,7 +38,7 @@ namespace Config;
  * @author  Matt Wiseman
  * @since   1.0.0
  */
-class Ini implements Config\Adaptor
+class Ini implements Adaptor
 {
     private static $_data = \NULL;
 
