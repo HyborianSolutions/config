@@ -74,7 +74,8 @@ class Config
             }
             
             self::$_conf = $data;
-            $obj =  '\\' . __NAMESPACE__ . '\\' . $data['type'];
+            $obj =  '\\' . __NAMESPACE__ . '\\' . ucfirst($data['type']);
+            
             var_dump($obj);
             self::$_adaptor =  $obj;
             $obj::init($data);

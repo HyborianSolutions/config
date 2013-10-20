@@ -31,6 +31,7 @@
  */
 namespace Config;
 
+            var_dump('test');
 /**
  * Ini Adapter
  * @package Config
