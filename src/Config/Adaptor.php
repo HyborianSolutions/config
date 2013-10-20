@@ -2,7 +2,7 @@
 
 namespace Config;
 
-Interface adaptor
+Interface Adaptor
 {
     public static function init($data);
     public static function get($data);
